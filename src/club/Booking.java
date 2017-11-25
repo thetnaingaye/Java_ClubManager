@@ -9,6 +9,8 @@ public class Booking
 	private Facility facility;
 	private Date startDate;
 	private Date endDate;
+	
+	//testing second commit changes to github
 
 	public Booking(Member member, Facility facility, Date startDate, Date endDate)
 	{
