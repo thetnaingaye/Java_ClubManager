@@ -12,6 +12,8 @@ public class ClubApplication
 	{
 		Member member1,member2,member3,member4;
 		Facility fac1, fac2, fac3;
+		
+		//commit 1st changes to github
 
 		
 		Club myClub = new Club();
