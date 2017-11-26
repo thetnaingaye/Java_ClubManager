@@ -74,7 +74,7 @@ public class ClubApplication
 		
 		myClub.show();
 		SimpleDateFormat simpledateformat = new SimpleDateFormat("d-MMM-yyyy H:mm");
-		Date b1Start = simpledateformat.parse("25-NOV-2017 15:01");
+		Date b1Start = simpledateformat.parse("25-NOV-2017 15:00");
 		Date b1End = simpledateformat.parse("29-NOV-2017 15:00");
 		Booking b1 = new Booking(member1,fac1,b1Start,b1End);
 
