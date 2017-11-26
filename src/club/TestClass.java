@@ -7,6 +7,7 @@ public class TestClass
 	{
 		// TODO Auto-generated method stub
 		System.out.println("Test add file to commit github");
+		//testing
 	}
 
 }
