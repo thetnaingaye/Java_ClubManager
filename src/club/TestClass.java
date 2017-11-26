@@ -14,6 +14,7 @@ public class TestClass
 		//tested back by acer
 		//tested back by surface..........
 		//re-established back on surface
+		//for acer reset master branch test
 	}
 
 }
