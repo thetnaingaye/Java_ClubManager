@@ -16,7 +16,7 @@ public class TestClass
 		//re-established back on surface
 		//for acer reset master branch test
 		//acer worked
-		//added on acer with surface account
+		
 	}
 
 }
