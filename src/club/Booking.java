@@ -10,15 +10,24 @@ public class Booking
 	private Date startDate;
 	private Date endDate;
 	
-	//testing second commit changes to github
-
-	public Booking(Member member, Facility facility, Date startDate, Date endDate)
+	public Booking(Member member, Facility fac, Date startDate, Date endDate) throws BadBookingException
 	{
-		super();
-		this.member = member;
-		this.facility = facility;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		boolean isMemberInstance = member instanceof Member || member != null;
+		boolean isFacilityInstance = facility != null;
+		boolean isDateHasValue = startDate instanceof Date || startDate != null || endDate instanceof Date || endDate != null;
+		boolean isDateValid = startDate.before(endDate);
+		if( isMemberInstance && isDateHasValue && isDateValid)
+		{
+			this.member = member;
+			this.facility = fac;
+			this.startDate = startDate;
+			this.endDate = endDate;
+		}
+		else
+		{
+			throw new BadBookingException("Booking constructor failed");
+		}
+
 	}
 
 	public Member getMember()

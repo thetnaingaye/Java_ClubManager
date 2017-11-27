@@ -2,6 +2,7 @@ package club;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Club
@@ -10,12 +11,15 @@ public class Club
 
 	private ArrayList<Member> member;
 	private HashMap<String, Facility> facility;
+	
+	private BookingRegister bookingRegister;
 
 	public Club()
 	{
 		currentNumber = 0;
 		member = new ArrayList<Member>();
 		facility = new HashMap<String, Facility>();
+		bookingRegister = new BookingRegister();
 
 	}
 
@@ -112,6 +116,25 @@ public class Club
 		this.showMembers();
 		System.out.println();
 		this.showFacilities();
+	}
+	
+	
+	//4b (17)
+	public void addBooking(int membershipnumber,Facility fac,Date startdate,Date enddate) throws BadBookingException
+	{
+		Member m =member.get(membershipnumber);
+		//Facility fac = facility.get(facname);
+		bookingRegister.addBooking(m,fac, startdate, enddate);
+		
+	}
+	
+	public void showBookings(Facility fac)
+	{
+		ArrayList<Booking> blist = bookingRegister.getBookings(fac);
+		for (Booking booking : blist)
+		{
+			booking.show();
+		}
 	}
 
 }

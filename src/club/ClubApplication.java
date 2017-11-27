@@ -23,70 +23,73 @@ public class ClubApplication
 		fac2 = myClub.addFacility("Room1", "Conference Room on Level 2");
 		fac3 = myClub.addFacility("Room2", "Meeting Room on Level 3");
 
-		System.out.println("\nTesting Member.show() method individually");
-		System.out.println("--------------------");
-		System.out.println("Members:");
-		member1.show();
-		member2.show();
-		member3.show();
-		member4.show();
+//		System.out.println("\nTesting Member.show() method individually");
+//		System.out.println("--------------------");
+//		System.out.println("Members:");
+//		member1.show();
+//		member2.show();
+//		member3.show();
+//		member4.show();
+//
+//		System.out.println("\nTesting showMember method");
+//		System.out.println("--------------------");
+//		myClub.showMembers();
+//
+//		myClub.removeMember(2);
+//
+//		System.out.println("\nTesting removeMember method");
+//		System.out.println("--------------------");
+//
+//		ArrayList<Member> memList = myClub.getMembers();
+//		for (Member member : memList) {
+//			member.show();
+//		}
+//
+//		System.out.println("\nFacility Testing");
+//		System.out.println("--------------------");
+//
+//		System.out.println("\nGet Facility test");
+//		System.out.println("--------------");
+//		Facility fac4 = myClub.getFacility("Main Hall");
+//		System.out.println(fac4);
+//
+//		System.out.println("\ngetFacilities test");
+//		System.out.println("--------------");
+//		Collection<Facility> facList = myClub.getFacilities();
+//		for (Facility facility : facList) {
+//			facility.show();
+//		}
+//
+//		System.out.println("\nFacility Remove Testing");
+//		System.out.println("--------------------");
+//		myClub.removeFacility("Main Hall");
+//		myClub.showFacilities();
+//
+//		myClub.show();
 
-		System.out.println("\nTesting showMember method");
-		System.out.println("--------------------");
-		myClub.showMembers();
-
-		myClub.removeMember(2);
-
-		System.out.println("\nTesting removeMember method");
-		System.out.println("--------------------");
-
-		ArrayList<Member> memList = myClub.getMembers();
-		for (Member member : memList) {
-			member.show();
-		}
-
-		System.out.println("\nFacility Testing");
-		System.out.println("--------------------");
-
-		System.out.println("\nGet Facility test");
-		System.out.println("--------------");
-		Facility fac4 = myClub.getFacility("Main Hall");
-		System.out.println(fac4);
-
-		System.out.println("\ngetFacilities test");
-		System.out.println("--------------");
-		Collection<Facility> facList = myClub.getFacilities();
-		for (Facility facility : facList) {
-			facility.show();
-		}
-
-		System.out.println("\nFacility Remove Testing");
-		System.out.println("--------------------");
-		myClub.removeFacility("Main Hall");
-		myClub.showFacilities();
-
-		myClub.show();
 		
 		try 
 		{
-			Date b1Start = getDate("25-NOV-2017 15:01");
-			Date b1End = getDate("29-NOV-2017 15:00");
-			Booking b1 = new Booking(member1, fac1, b1Start, b1End);
+			Date b1Start = getDate("25-NOV-2017 15:00");
+			Date b1End = getDate("27-NOV-2017 15:00");
+			myClub.addBooking(member1.getMemberNumber(), fac1, b1Start, b1End);
 
-			Date b2Start = getDate("22-NOV-2017 15:00");
-			Date b2End = getDate("25-NOV-2017 15:00");
-			Booking b2 = new Booking(member2, fac1, b2Start, b2End);
-			System.out.println("\nCheck overlap");
-			System.out.println(b1.overlaps(b2));
-			System.out.println(b2.overlaps(b1));
-			System.out.println(b2);
-			b1.show();
-
+			Date b2Start = getDate("27-NOV-2017 15:01");
+			Date b2End = getDate("29-NOV-2017 15:00");
+			myClub.addBooking(member2.getMemberNumber(), fac1, b2Start, b2End);
+			
+			Date b3Start = getDate("27-NOV-2017 15:01");
+			Date b3End = getDate("29-NOV-2017 15:00");
+			myClub.addBooking(member2.getMemberNumber(), fac2, b3Start, b3End);
+			
 		} 
-		catch (NullPointerException e) 
+		catch (BadBookingException e) 
 		{
-			System.err.println("date object is null");
+			System.err.println(e.getMessage());
 		}
+		
+		
+		myClub.showBookings(fac2);
 
 	}
 
