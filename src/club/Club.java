@@ -140,15 +140,45 @@ public class Club
 		
 	}
 	
-	public void showBookings(String facName)
+	//4b (18)
+	public ArrayList<Booking> getBookings(String facName,Date startDate,Date endDate) throws BadBookingException
 	{
-		
-		Facility fac = facility.get(facName);
-		ArrayList<Booking> blist = bookingRegister.getBookings(fac);
-		for (Booking booking : blist)
+	
+		try
 		{
-			booking.show();
+			Facility fac = facility.get(facName);
+			return bookingRegister.getBookings(fac, startDate, endDate);
 		}
+		catch(NullPointerException e)
+		{
+			throw new BadBookingException("Facility not exist");
+		}
+	}
+	
+	public void showBookings(String facName,Date startDate,Date endDate) 
+	{
+		try
+		{
+			ArrayList<Booking> blist = this.getBookings(facName, startDate, endDate);
+			if(!blist.isEmpty())
+			{
+				for (Booking booking : blist)
+				{
+					booking.show();
+				}
+			}
+			else
+			{
+				System.out.println("There is no booking in specified date range");
+			}
+			
+		}
+		catch(BadBookingException e)
+		{
+			System.err.println(e.getMessage());
+		}
+	
+
 	}
 
 }

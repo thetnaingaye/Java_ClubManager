@@ -48,8 +48,14 @@ public class ClubApplication
 		}
 		
 		
-		myClub.showBookings("Main Hall");
-		myClub.showBookings("Room1");
+		
+		Date start = getDate("20-NOV-2017 15:00");
+		Date end = getDate("30-NOV-2017 15:00");
+		myClub.showBookings("Main Hall",start,end);
+		
+		Date start1 = getDate("26-NOV-2017 15:00");
+		Date end1 = getDate("30-NOV-2017 15:00");
+		myClub.showBookings("Room1",start1,end1);
 
 	}
 

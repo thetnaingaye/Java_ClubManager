@@ -51,9 +51,19 @@ public class BookingRegister
 		
 	}
 	
-	public ArrayList<Booking> getBookings (Facility fac)
+	//4b (15)
+	public ArrayList<Booking> getBookings (Facility fac,Date startDate,Date endDate)
 	{
-		return bookingLists.get(fac);
+		ArrayList<Booking> bookingListByDateRange = new ArrayList<Booking>();
+		for (Booking booking : bookingLists.get(fac))
+		{
+			if( (booking.getStartDate().equals(startDate) ||booking.getStartDate().after(startDate)) && (booking.getEndDate().equals(endDate) || booking.getEndDate().before(endDate)) )
+			{
+				bookingListByDateRange.add(booking);
+			}
+		}
+		
+		return bookingListByDateRange;
 	}
 	
 	
