@@ -12,11 +12,9 @@ public class Booking
 	
 	public Booking(Member member, Facility fac, Date startDate, Date endDate) throws BadBookingException
 	{
-		boolean isMemberInstance = member instanceof Member || member != null;
-		boolean isFacilityInstance = facility != null;
-		boolean isDateHasValue = startDate instanceof Date || startDate != null || endDate instanceof Date || endDate != null;
+
 		boolean isDateValid = startDate.before(endDate);
-		if( isMemberInstance && isDateHasValue && isDateValid)
+		if( member !=null && fac!=null && startDate !=null && endDate!= null && isDateValid)
 		{
 			this.member = member;
 			this.facility = fac;

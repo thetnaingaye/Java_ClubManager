@@ -120,16 +120,30 @@ public class Club
 	
 	
 	//4b (17)
-	public void addBooking(int membershipnumber,Facility fac,Date startdate,Date enddate) throws BadBookingException
+	public void addBooking(int membershipnumber,String facName,Date startdate,Date enddate) throws BadBookingException
 	{
-		Member m =member.get(membershipnumber);
-		//Facility fac = facility.get(facname);
-		bookingRegister.addBooking(m,fac, startdate, enddate);
+		try 
+		{
+			Member m =member.get(membershipnumber-1);
+			Facility fac = facility.get(facName);
+			bookingRegister.addBooking(m,fac, startdate, enddate);
+		}
+		catch(IndexOutOfBoundsException e)
+		{
+			throw new BadBookingException("Member not exist");
+		}
+		catch(NullPointerException e)
+		{
+			throw new BadBookingException("Facility not exist");
+		}
+
 		
 	}
 	
-	public void showBookings(Facility fac)
+	public void showBookings(String facName)
 	{
+		
+		Facility fac = facility.get(facName);
 		ArrayList<Booking> blist = bookingRegister.getBookings(fac);
 		for (Booking booking : blist)
 		{
