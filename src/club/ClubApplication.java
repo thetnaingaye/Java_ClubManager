@@ -60,10 +60,14 @@ public class ClubApplication
 			ArrayList<Booking> removeList = myClub.getBookings("Main Hall", start, end);
 			for (Booking booking : removeList)
 			{
-				if(booking.getMember().getMemberNumber() == 3)
+				if(booking.getMember().getMemberNumber() == 1)
 					b = booking;
 			}
-			myClub.removeBooking(b);
+			if(b!= null) 
+			{
+				myClub.removeBooking(b);
+			}
+		
 			System.out.println("----------remove Booking try-----------");
 			myClub.showBookings("Main Hall",start,end);
 			
