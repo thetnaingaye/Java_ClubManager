@@ -2,6 +2,7 @@ package club;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Club
@@ -10,12 +11,16 @@ public class Club
 
 	private ArrayList<Member> member;
 	private HashMap<String, Facility> facility;
+	
+	private BookingRegister bookingRegister;
+	
 
 	public Club()
 	{
 		currentNumber = 0;
 		member = new ArrayList<Member>();
 		facility = new HashMap<String, Facility>();
+		bookingRegister = new BookingRegister();
 
 	}
 
@@ -113,5 +118,81 @@ public class Club
 		System.out.println();
 		this.showFacilities();
 	}
+	
+	
+	//4b (17)
+	public void addBooking(int membershipnumber,String facName,Date startdate,Date enddate) throws BadBookingException
+	{
+		try 
+		{
+			Member m =member.get(membershipnumber-1);
+			Facility fac = facility.get(facName);
+			bookingRegister.addBooking(m,fac, startdate, enddate);
+		}
+		catch(IndexOutOfBoundsException e)
+		{
+			throw new BadBookingException("Member not exist");
+		}
+		catch(NullPointerException e)
+		{
+			throw new BadBookingException("Facility not exist");
+		}
+
+		
+	}
+	
+	//4b (18)
+	public ArrayList<Booking> getBookings(String facName,Date startDate,Date endDate) throws BadBookingException
+	{
+	
+		try
+		{
+			Facility fac = facility.get(facName);
+			return bookingRegister.getBookings(fac, startDate, endDate);
+		}
+		catch(NullPointerException e)
+		{
+			throw new BadBookingException("Facility not exist");
+		}
+	}
+	
+	public void showBookings(String facName,Date startDate,Date endDate) 
+	{
+		try
+		{
+			ArrayList<Booking> blist = this.getBookings(facName, startDate, endDate);
+			if(!blist.isEmpty())
+			{
+				for (Booking booking : blist)
+				{
+					
+					booking.show();
+
+				}
+			}
+			else
+			{
+				System.out.println("There is no booking in specified date range");
+			}
+			
+		}
+		catch(BadBookingException e)
+		{
+			System.err.println(e.getMessage());
+		}
+		
+
+		
+	
+
+	}
+	
+	public void removeBooking(Booking b)
+	{
+		bookingRegister.removeBooking(b);
+		
+	}
+	
+	
 
 }
