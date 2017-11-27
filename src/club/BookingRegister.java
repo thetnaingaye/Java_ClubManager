@@ -66,5 +66,15 @@ public class BookingRegister
 		return bookingListByDateRange;
 	}
 	
+	//4b (16)
+	public void removeBooking(Booking b)
+	{
+		Facility fac = b.getFacility();
+		ArrayList<Booking> removeList = bookingLists.get(fac);
+		removeList.remove(b);
+		bookingLists.put(fac, removeList);
+		
+	}
+	
 	
 }

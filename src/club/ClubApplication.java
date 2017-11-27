@@ -28,7 +28,7 @@ public class ClubApplication
 			Date b1Start = getDate("25-NOV-2017 15:00");
 			Date b1End = getDate("27-NOV-2017 15:00");
 			myClub.addBooking(3,"Main Hall", b1Start, b1End);
-
+		
 			Date b2Start = getDate("27-NOV-2017 15:01");
 			Date b2End = getDate("29-NOV-2017 15:00");
 			myClub.addBooking(3, "Main Hall", b2Start, b2End);
@@ -47,15 +47,39 @@ public class ClubApplication
 			System.err.println(e.getMessage());
 		}
 		
-		
-		
 		Date start = getDate("20-NOV-2017 15:00");
 		Date end = getDate("30-NOV-2017 15:00");
 		myClub.showBookings("Main Hall",start,end);
+		System.out.println();
+		
+
+		//try remove booking
+		try
+		{
+			Booking b = null;
+			ArrayList<Booking> removeList = myClub.getBookings("Main Hall", start, end);
+			for (Booking booking : removeList)
+			{
+				if(booking.getMember().getMemberNumber() == 3)
+					b = booking;
+			}
+			myClub.removeBooking(b);
+			System.out.println("----------remove Booking try-----------");
+			myClub.showBookings("Main Hall",start,end);
+			
+			
+		} 
+		catch (BadBookingException e)
+		{
+			System.out.println(e.getMessage());
+				
+		}
+
 		
 		Date start1 = getDate("26-NOV-2017 15:00");
 		Date end1 = getDate("30-NOV-2017 15:00");
 		myClub.showBookings("Room1",start1,end1);
+		
 
 	}
 

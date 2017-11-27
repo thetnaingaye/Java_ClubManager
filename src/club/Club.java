@@ -13,6 +13,7 @@ public class Club
 	private HashMap<String, Facility> facility;
 	
 	private BookingRegister bookingRegister;
+	
 
 	public Club()
 	{
@@ -164,7 +165,9 @@ public class Club
 			{
 				for (Booking booking : blist)
 				{
+					
 					booking.show();
+
 				}
 			}
 			else
@@ -177,8 +180,19 @@ public class Club
 		{
 			System.err.println(e.getMessage());
 		}
+		
+
+		
 	
 
 	}
+	
+	public void removeBooking(Booking b)
+	{
+		bookingRegister.removeBooking(b);
+		
+	}
+	
+	
 
 }
